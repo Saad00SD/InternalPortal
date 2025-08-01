@@ -1,0 +1,66 @@
+﻿@page "/projects"
+
+<div class="project-tracker">
+    <h2>Project Tracker</h2>
+
+    <!-- Project Tracker Filters -->
+    <div class="filters">
+        <label for="filter">Filter by Status:</label>
+        <select id="filter" @bind="selectedFilter">
+            <option value="all">All</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+            <option value="on-hold">On Hold</option>
+        </select>
+    </div>
+
+    <!-- Project List -->
+    <div class="project-list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Status</th>
+                    <th>Deadline</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in filteredProjects)
+                {
+                    <tr>
+                        <td>@project.Name</td>
+                        <td>@project.Status</td>
+                        <td>@project.Deadline.ToString("MM/dd/yyyy")</td>
+                        <td>
+                            <button class="btn btn-primary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    private string selectedFilter = "all";
+
+    // Sample project data
+    private List<Project> projects = new List<Project>
+    {
+        new Project { Name = "Project A", Status = "in-progress", Deadline = DateTime.Now.AddDays(10) },
+        new Project { Name = "Project B", Status = "completed", Deadline = DateTime.Now.AddDays(5) },
+        new Project { Name = "Project C", Status = "on-hold", Deadline = DateTime.Now.AddDays(20) }
+    };
+
+    private IEnumerable<Project> filteredProjects =>
+        selectedFilter == "all" ? projects : projects.Where(p => p.Status == selectedFilter);
+
+    public class Project
+    {
+        public string Name { get; set; }
+        public string Status { get; set; }
+        public DateTime Deadline { get; set; }
+    }
+}
