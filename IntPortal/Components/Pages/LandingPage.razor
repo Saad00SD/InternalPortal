@@ -1,0 +1,31 @@
+﻿@page "/"
+@layout Shared.EmptyLayout
+
+@inject NavigationManager NavigationManager
+
+<div class="page-container">
+    <!-- Header Section -->
+    <header class="header-bar">
+        <div class="header-content">
+            <div></div> <!-- Placeholder for left side (e.g. logo or app name if needed) -->
+            <nav class="header-links">
+                <NavLink href="/login" class="nav-link">Login</NavLink>
+                <a href="https://sherbetrewards.com/" target="_blank" class="nav-link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Welcome Page Content -->
+    <div class="welcome-container">
+        <h1 class="welcome-heading">Welcome to Internal Portal of Sherbet!</h1>
+        <p class="welcome-message">We're glad to have you here. Explore the features of the app and enjoy a seamless experience.</p>
+        <NavLink href="/dashboard" class="nav-link">Dashboard</NavLink>
+    </div>
+</div>
+
+@code {
+    void GoToLogin()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+}

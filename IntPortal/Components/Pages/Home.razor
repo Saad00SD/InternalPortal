@@ -1,26 +1,9 @@
-﻿@page "/"
+﻿@page "/dashboard/home"
+@layout Layout.MainLayout
 
 @inject Microsoft.AspNetCore.Components.NavigationManager navigationManager
 
 <PageTitle>Home</PageTitle>
-
-<div class="page-container">
-    <!-- Top Navigation Bar -->
-    <div class="top-row px-4">
-        <!-- Right-aligned Login and About links -->
-        <div class="nav-links">
-            <NavLink href="/login" class="nav-link">Login</NavLink>
-            <a href="https://sherbetrewards.com/" target="_blank" class="nav-link">About</a>
-        </div>
-    </div>
-
-    <!-- Welcome Page Content -->
-    <div class="welcome-container">
-        <h1 class="welcome-heading">Welcome to Internal Portal of Sherbet!</h1>
-        <p class="welcome-message">We're glad to have you here. Explore the features of the app and enjoy a seamless experience.</p>
-        <button class="btn btn-primary" @onclick="NavigateToLogin">Get Started</button>
-    </div>
-</div>
 
 @code {
     private void NavigateToLogin()
